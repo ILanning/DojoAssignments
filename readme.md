@@ -1,0 +1,1 @@
+This project contains all of my projects for Coding Dojo.
