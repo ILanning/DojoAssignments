@@ -1,0 +1,96 @@
+.main_container{
+  width: 970px;
+}
+#header_image{
+  display: inline-block;
+  height: 100px;
+  margin-right: 320px;
+}
+#header_text{
+  display: inline-block;
+  vertical-align: bottom;
+  padding-bottom: 6px;
+}
+.top_navbar{
+  background: linear-gradient(white, rgb(220, 220, 220), white);
+  border: solid 1px black;
+  padding: 8px 0px 8px 0px;
+}
+.top_navbar a{
+  padding: 8px 33px 9px 33px;
+  border: none 1px black;
+  margin: 0;
+  border-right-style: solid;
+}
+.main_content{
+  background: radial-gradient(rgb(115, 90, 98), rgb(27, 10, 15));
+  padding: 13px;
+}
+#word_cloud{
+  width: 500px;
+  height: 300px;
+  background-color: rgb(192, 192, 192);
+  padding: 5px;
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: top;
+}
+.infobox{
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  background: linear-gradient(rgb(120, 167, 191), white);
+  width: 223px;
+  height: 390px;
+  margin: 0px 5px;
+  font-size: 12px;
+}
+.infobox h3{
+  background: linear-gradient(rgb(201,205,206), rgb(134, 132, 145), rgb(201,205,206));
+  margin: 0;
+  padding: 7px 0px 7px 10px;
+}
+.infobox img{
+  height: 130px;
+  width: inherit;
+}
+.infobox span{
+  display: inline-block;
+  margin: 5px;
+}
+.infobox input{
+  vertical-align: baseline;
+  border: solid 2px black;
+  position: absolute;
+  top: 355px;
+  left: 130px;
+  box-shadow: 0px 3px 7px rgb(30, 30, 30);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 4px 5px;
+  background-color: rgb(87, 115, 153);
+}
+#first_infobox{
+  width: 415px;
+  height: 310px;
+  margin-right: 0px;
+  background: linear-gradient(90deg, rgb(242, 253, 255), rgb(219, 203, 216));
+}
+#first_infobox h4{
+  margin-left: 5px;
+  margin-top: 10px;
+}
+.middle_row img{
+  vertical-align: middle;
+  height: 16px;
+  margin: 5px 0px 5px 790px;
+}
+.middle_row span{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  padding: 2px 0px 3px 4px;
+  color: rgb(79, 112, 153);
+}

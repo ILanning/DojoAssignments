@@ -1,0 +1,40 @@
+/**{outline: 1px dotted red}*/
+
+.red_box img{
+  width: inherit;
+  height: inherit;
+}
+.blue_box img{
+  width: inherit;
+  height: inherit;
+}
+h1{
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
+.header_image{
+  height: 3em;
+}
+.red_box,.blue_box{
+  border: 0.25em solid black;
+  display: inline-block;
+  width: 7em;
+  height: 7em;
+  padding:1em;
+  margin-bottom: 0.25em;
+}
+.red_box{
+  background-color: pink;
+}
+.blue_box{
+  background-color: lightblue;
+}
+#top_container{
+  background-color: lightgrey;
+  width: 48.75em;
+  padding: 1.5em;
+}
+#header{
+  width: 26em;
+  margin: 0em auto;
+}

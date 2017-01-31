@@ -1,0 +1,88 @@
+.main_container{
+  background-color: lightgrey;
+  width: 1220px;
+  height: 710px;
+}
+.top_grid_marker{
+  height: 40px;
+  padding-top: 20px;
+  color: red;
+  margin-bottom: 2px;
+}
+.side_grid_marker{
+  height: 20px;
+  color: red;
+}
+.top_grid_marker, .side_grid_marker, .atomic_number, .atomic_weight, .atomic_symbol{
+  width: 60px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+.atomic_number, .atomic_symbol, .atomic_weight{
+  border: solid 1px grey;
+  width: 58px;
+  font-size: 12px;
+}
+.atomic_number{
+  border-bottom-style: none;
+  margin-top: 1px;
+  padding-top: 1px;
+  height: 18px;
+}
+.atomic_weight{
+  border-top-style: none;
+  margin-bottom: 1px;
+  height: 14px;
+}
+.atomic_symbol{
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  height: 28px;
+  text-decoration: none;
+  border-style: none solid none solid;
+}
+.group_1_spacer{
+  margin-left: 63px;
+}
+.group_3_spacer{
+  margin-left: 20px;
+}
+.group_12_spacer{
+  margin-left: 640px;
+}
+.group_18_spacer{
+  margin-left: 1012px;
+}
+.lanthinoid_marker{
+  margin-left: 55px;
+  color: red;
+}
+.actinoid_marker{
+  margin-left: 55.5px;
+  color: red;
+}
+.lanthinoid_actinoid_group_3_spacer{
+  margin-left: 206px;
+}
+.lanthinoid_actinoid_end_spacer{
+  margin-right: 130px;
+}
+.lanthinoid_top_spacer{
+  margin-top: 30px;
+}
+.color_red{
+  background-color: rgb(253, 154, 152);
+}
+.color_blue{
+  background-color: rgb(104, 155, 255);
+}
+.color_yellow{
+  background-color: rgb(254, 203, 0);
+}
+.color_green{
+  background-color: rgb(31, 202, 33);
+}
