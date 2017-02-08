@@ -1,0 +1,50 @@
+1.pip install django
+Collecting django
+  Downloading Django-1.10.5-py2.py3-none-any.whl (6.8MB)
+    100% |################################| 6.8MB 58kB/s
+Installing collected packages: django
+Successfully installed django-1.10.5
+
+Installs the Django web development library.
+
+2.pip list
+Django (1.10.5)
+pip (9.0.1)
+setuptools (16.0)
+
+Lists installed packages.
+
+3.pip install django
+Requirement already satisfied: django in c:\python27\lib\site-packages
+
+Tells you that Django has already been installed and gives you the install directory.
+
+4.pip freeze
+Django==1.10.5
+
+Shows a list of the packages that may be required to run your code on another system.
+
+6.pip uninstall django
+[]...]
+c:\python27\scripts\django-admin.py
+c:\python27\scripts\django-admin.pyc
+Proceed (y/n)? y
+Successfully uninstalled Django-1.10.5
+
+Uninstalls Django.
+
+7.pip show django
+[nothing]
+
+Shows nothing, because the package no longer exists on your system.
+
+8.pip search Flask
+[...]
+Zask (1.9.4)                                  - Basic framework to use with
+                                                ZeroRPC inspired by Flask
+zforms (1.8)                                  - Tiny Flask form validation
+                                                library.
+Zolenmeyer (0.1)                              - Stupid personally customized
+                                                Flask
+
+Returns a list of installable packages containing the word 'Flask' in the name or description.

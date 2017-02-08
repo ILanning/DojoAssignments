@@ -1,0 +1,24 @@
+body{
+  width: 900px;
+  margin: 0.5em;
+}
+table{
+  border: solid 1px black;
+  width: 100%;
+}
+form{
+  width: 60%;
+  margin: 0px 10%;
+  border: solid 1px black;
+  padding: 0.375em;
+}
+form label{
+  width:20%;
+  display: inline-block;
+}
+form input[type="text"]{
+  width: 70%;
+  display: inline-block;
+}
+form input[type="button"]{
+}

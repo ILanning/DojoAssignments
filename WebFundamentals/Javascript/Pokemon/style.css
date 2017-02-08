@@ -1,0 +1,9 @@
+.main_container{
+  width: 1200px;
+}
+img{
+  border: solid 1px black;
+  margin: 3px;
+  padding: 7px;
+  display: inline-block;
+}

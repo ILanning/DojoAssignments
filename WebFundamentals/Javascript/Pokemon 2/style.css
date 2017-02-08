@@ -1,0 +1,25 @@
+.main_container{
+  width: 1200px;
+}
+.dex_container{
+  position: fixed;
+  display: none;
+  width: 350px;
+  padding: 10px;
+  border: solid 4px rgb(200, 200, 200);
+  background-color: rgb(240, 240, 240);
+}
+.dex_container p{
+  padding-left: 10px;
+}
+.images_container{
+  display: inline-block;
+  margin-left: 400px;
+  width: 750px;
+}
+.images_container img{
+  border: solid 1px black;
+  margin: 3px;
+  padding: 7px;
+  display: inline-block;
+}

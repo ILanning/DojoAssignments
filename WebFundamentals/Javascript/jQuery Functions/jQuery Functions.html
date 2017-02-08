@@ -1,0 +1,93 @@
+<!--
+.click       = listen for click, trigger a click
+.hide        = make invisible
+.show        = make visible
+.toggle      = swap visibility
+.slideDown   = shrinks then hides element
+.slideUp     = shrinks then hide element
+.slideToggle =
+.fadeIn      =
+.fadeOut     =
+.addClass    =
+.before      = inserts content before the selected elements
+.after       = inserts content after the selected elements
+.append      = inserts content within the selected elements as the last child
+.html        = gets the content of the first matched element or sets the content of all
+.attr        = gets the specified attribute from the first matched element or sets it for all
+.val         = gets the value of an input/select/textarea
+.text        = gets the text from the matching elements and all child elements
+.data        =
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Functions</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="hideShowEx">
+      <h2>Test Show/Hide (.hide, .show, .toggle)</h2>
+      <input type="button" value="Toggle">
+      <div class="solidBox large"></div>
+    </div>
+    <div class="slideEx">
+      <h2>Test Sliding (.slideUp, .slideDown, .slideToggle)</h2>
+      <input type="button" value="Toggle">
+      <div>
+        <div class="upper">
+          <div class="solidBox small"></div>
+          <div class="solidBox small"></div>
+          <div class="solidBox small"></div>
+          <div class="solidBox small"></div>
+          <div class="solidBox small"></div>
+          <div class="spacer small"></div>
+          <div class="solidBox small"></div>
+          <div class="solidBox small"></div>
+          <div class="solidBox small"></div>
+          <div class="solidBox small"></div>
+          <div class="solidBox small"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fadeEx">
+      <h2>Test Fading (.fadeIn, .fadeOut)</h2>
+      <div class="solidBox large"></div>
+    </div>
+    <div class="addClassEx">
+      <h2>Test .addClass (.addClass, .attr)</h2>
+      <input type="button" value="Reset">
+      <div class="solidBox large"></div>
+    </div>
+    <div class="beforeAfterAppendEx">
+      <div id="beforeAfterH2Container">
+        <h2>Test Before/After</h2>
+      </div>
+      <input type="button" value="Reset">
+      <div class="solidBox large"></div>
+    </div>
+    <div class="valTextEx">
+      <p>Type your text here</p>
+      <input type="button" value="Submit">
+      <textarea rows="3" cols="24" placeholder="Type your text here"></textarea>
+    </div>
+    <div class="dataEx">
+      <div id="characterData">
+        <p id="name">Name: <span></span></p>
+        <p id="class">Class: <span></span></p>
+        <p id="level">Level: <span></span></p>
+      </div>
+      <input type="button" value="Submit">
+      <form>
+        <label for="nameInput">Name:</label>
+        <input type="text" name="nameInput" value="">
+        <label for="classInput">Class:</label>
+        <input type="text" name="classInput" value="">
+        <label for="levelInput">Level:</label>
+        <input type="text" name="levelInput" value="">
+      </form>
+    </div>
+  </body>
+</html>

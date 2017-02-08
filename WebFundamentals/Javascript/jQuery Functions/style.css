@@ -1,0 +1,74 @@
+body{
+  margin: 0px;
+  width: 1000px;
+}
+.small{
+  height: 30px;
+  width: 30px;
+}
+.large{
+  height: 100px;
+  width: 100px;
+}
+.slideEx, .hideShowEx, .fadeEx, .addClassEx, .beforeAfterAppendEx, .valTextEx, .dataEx{
+  border: solid 1px black;
+  margin: 5px;
+}
+.slideEx h2, .hideShowEx h2, .fadeEx h2, .addClassEx h2, .beforeAfterAppendEx h2, .valTextEx p{
+  display: inline-block;
+  width: 650px;
+  margin: auto 0px auto 0px;
+}
+.slideEx input, .hideShowEx input, .fadeEx input, .addClassEx input, .beforeAfterAppendEx input, .valTextEx input, .dataEx input{
+  display: inline-block;
+  width: 100px;
+  margin: 0px;
+}
+.hideShowEx div, .slideEx div, .fadeEx div, .addClassEx div, .beforeAfterAppendEx div, .dataEx div{
+  vertical-align: middle;
+  display: inline-block;
+}
+.slideEx div{
+  width: 200px;
+}
+.fadeEx h2{
+  width: 754px;
+}
+.valTextEx textarea{
+  vertical-align: middle;
+}
+.dataEx div{
+  width: 500px;
+  vertical-align: middle;
+}
+.dataEx p{
+  display: inline-block;
+  width: 480px;
+}
+.dataEx form{
+  display: inline-block;
+  width: 270px;
+}
+.dataEx form label{
+  display: inline-block;
+  vertical-align: middle;
+  width: 60px;
+}
+.dataEx form input{
+  display: inline-block;
+  margin: 5px 0px 5px 0px;
+  width: 200px;
+}
+.solidBox, .spacer{
+  display: inline-block;
+  margin: 0px;
+}
+.solidBox{
+  background-color: blue;
+}
+.spacer{
+  width: 0px;
+}
+.red{
+  background-color: red;
+}
