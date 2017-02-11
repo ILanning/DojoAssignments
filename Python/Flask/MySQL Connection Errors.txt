@@ -1,0 +1,6 @@
+File "C:\Users\iancl\DOCUME~1\CODING~1\Python\ENVIRO~1\PY2FLA~1\lib\site-packages\MySQLdb\connections.py", line 42, in defaulterrorhandler
+  raise errorvalue
+sqlalchemy.exc.ProgrammingError: (_mysql_exceptions.ProgrammingError) (1146, "Table 'mydb.users' doesn't exist") [SQL: u'SELECT * FROM users']
+
+Error: Tried to connect to a table that doesn't exist
+Fix: Switch table in select statement to one that's there

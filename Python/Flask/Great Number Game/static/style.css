@@ -1,0 +1,30 @@
+input{
+  display: block;
+  margin: auto;
+}
+input[type="text"]{
+  margin-top: 1em;
+}
+h1, p{
+  margin: 0px;
+  width: 100%;
+  text-align: center;
+}
+.resultbox{
+  border: solid 2px black;
+  width: 10em;
+  height: 8em;
+  padding-top: 2em;
+  text-align: center;
+  color: white;
+  margin: auto;
+}
+.green{
+  background-color: green;
+}
+.red{
+  background-color: red;
+}
+.hidden{
+  display: none;
+}

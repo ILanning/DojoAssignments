@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
+  </head>
+  <body>
+    <div class="main_content">
+      <h5>Your Gold: {{session["gold"]}}</h5>
+      <div class="forms">
+        <form class="" action="/process_money" method="post">
+          <input type="hidden" name="Farm" value="Farm">
+          <label for="farm_submit">Farm</label>
+          <p>(earns 10-20 gold)</p>
+          <input type="submit" name="farm_submit" value="Find Gold!">
+        </form>
+        <form class="" action="/process_money" method="post">
+          <input type="hidden" name="Cave" value="Cave">
+          <label for="cave_submit">Cave</label>
+          <p>(earns 5-10 gold)</p>
+          <input type="submit" name="cave_submit" value="Find Gold!">
+        </form>
+        <form class="" action="/process_money" method="post">
+          <input type="hidden" name="House" value="House">
+          <label for="house_submit">House</label>
+          <p>(earns 2-5 gold)</p>
+          <input type="submit" name="house_submit" value="Find Gold!">
+        </form>
+        <form class="" action="/process_money" method="post">
+          <input type="hidden" name="Casino" value="Casino">
+          <label for="casino_submit">Casino</label>
+          <p>(earns/loses 0-50 gold)</p>
+          <input type="submit" name="casino_submit" value="Find Gold!">
+        </form>
+      </div>
+      <p>Activities:</p>
+      <div class="activities">
+        {%for activity in session["activities"]%}
+        <p class={{activity[0]}}>{{activity[1]}}</p>
+        {%endfor%}
+      </div>
+      <form action="reset" method="post">
+        <input type="submit" value="Reset">
+      </form>
+    </div>
+  </body>
+</html>
