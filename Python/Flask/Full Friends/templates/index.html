@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <p class="{{category}}">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <h1>Friend Database</h1>
+    <form class="" action="/friends" method="post">
+      <h3>Create Friend</h3>
+      <label for="first">First Name</label>
+      <input type="text" name="first">
+      <label for="last">Last Name</label>
+      <input type="text" name="last">
+      <label for="email">Email</label>
+      <input type="text" name="email">
+      <input type="submit" name="" value="Submit">
+    </form>
+    {% if friends %}
+      {% for friend in friends %}
+        <div class="friendbox">
+          <div class="data">
+            <p>{{friend.first_name + " " + friend.last_name}}</p>
+            <p>{{friend.email}}</p>
+            <p>Added on: {{friend.created_at.strftime("%A, %B %d, %X")}}</p>
+          </div>
+          <div class="buttons">
+            <form action="/friends/{{friend.id}}/edit" method="get">
+              <input type="submit" name="" value="Edit">
+            </form>
+            <form action="/friends/{{friend.id}}/delete" method="post">
+              <input type="submit" name="" value="Delete">
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>

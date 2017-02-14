@@ -1,7 +1,11 @@
+body{
+  font-family: sans-serif;
+}
+h1{
+  text-align: center;
+}
 form{
   text-align: center;
-  width: 80%;
-  margin-left: 10%;
 }
 .invalid, .success{
   text-align: center;
@@ -21,24 +25,30 @@ form{
   border-color: rgb(0, 255, 0);
   background-color: rgb(200, 255, 200)
 }
-.email_item{
+.data{
+  display: inline-block;
+}
+.buttons{
+  display: inline-block;
+  position: absolute;
+  right: 0.75em;
+  vertical-align: middle;
+  top: 15%;
+}
+.buttons input{
+  display: block;
+  margin: 0.125em;
+  margin-bottom: 0.75em;
+}
+
+.friendbox{
   border: solid 2px rgb(150, 150, 150);
   background-color: rgb(220, 220, 220);
-  padding: 0.25em;
-  margin: 0.125em;
+  width: 70%;
+  margin: 0.5em;
+  margin-left: 15%;
   position: relative;
-  width: 50%;
-  margin-left: 25%;
 }
-.email_item span{
-  position: absolute;
-  right: 5em;
-  top: 32%;
-  text-align: right;
-}
-.email_item input{
-  position: absolute;
-  right: 0.5em;
-  top: 32%;
-  text-align: right;
+.friendbox p{
+  margin: 0.375em;
 }

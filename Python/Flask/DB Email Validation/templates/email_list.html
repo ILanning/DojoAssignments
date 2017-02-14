@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Email Validation</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <p class="{{category}}">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% for email in emails %}
+      <div class="email_item">
+        <p>{{email.address}}</p>
+        <form class="" action="/remove" method="post">
+          <span>{{email.created_at.strftime("%A, %B %d, %X")}}</span>
+          {% if session["email"] == email.address %}
+            <input type="hidden" name="id" value="{{email.id}}">
+            <input type="submit" value="Remove">
+          {% endif %}
+        </form>
+      </div>
+    {% endfor %}
+  </body>
+</html>
