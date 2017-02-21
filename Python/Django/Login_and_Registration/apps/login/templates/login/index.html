@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    <form class="" action="/create" method="post">
+      {% crsf_token %}
+      <h1>Register</h1>
+      <label for="first_name">First Name:</label>
+      <input type="text" name="first_name" value="">
+      <label for="last_name">Last Name:</label>
+      <input type="text" name="last_name" value="">
+      <label for="email">Email Address:</label>
+      <input type="text" name="email" value="">
+      <label for="password">Password:</label>
+      <input type="text" name="password" value="">
+      <label for="passconf">Password Confirmation:</label>
+      <input type="text" name="passconf" value="">
+      <input type="submit" value="Submit">
+    </form>
+    <form class="" action="/login" method="post">
+      {% crsf_token %}
+      <label for="email">Email Address:</label>
+      <input type="text" name="email" value="">
+      <label for="password">Password:</label>
+      <input type="text" name="password" value="">
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

@@ -76,6 +76,7 @@ class DList(object):
         if self.head != None:
             if self.head.value == val:
                 self.head = self.head.next
+                self.head.prev = None
             elif self.head.next != None:
                 prevNode = self.head
                 node = self.head.next
@@ -86,4 +87,5 @@ class DList(object):
                     node = node.next
                 if node.value == val:
                     prevNode.next = node.next
+                    prevNode.next.prev = prevNode
         return self

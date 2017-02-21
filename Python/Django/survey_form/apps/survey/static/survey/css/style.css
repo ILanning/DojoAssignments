@@ -1,0 +1,15 @@
+form, div{
+  border: solid 1px black;
+  border-radius: 4px;
+  padding: 10px;
+  width: 150px;
+}
+input, label{
+  display: inline-block;
+}
+label{
+  width: 140px;
+}
+select{
+  width: 174px;
+}

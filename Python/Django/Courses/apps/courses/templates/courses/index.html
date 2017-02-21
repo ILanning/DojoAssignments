@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Course Listing</title>
+  </head>
+  <body>
+    <form action="/create" method="post">
+      {% csrf_token %}
+      <input type="text" name="name">
+      <input type="textarea" name="description" value="">
+      <input type="submit" value="Submit">
+    </form>
+    <table>
+      {% for course in courses %}
+        <tr>
+          <td>{{course.name}}</td>
+          <td>{{course.description}}</td>
+          <td>{{course.created_at}}</td>
+          <td><a href="/courses/{{course.id}}">Comments</a></td>
+          <td><a href="/destroy/{{course.id}}">Remove</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

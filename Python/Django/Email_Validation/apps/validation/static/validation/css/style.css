@@ -1,0 +1,44 @@
+form{
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+}
+.error, .success{
+  text-align: center;
+  color: black;
+  margin: 0.25em;
+  border: solid 1px black;
+  padding: 0.25em;
+  font-weight: bold;
+  width: 60%;
+  margin-left: 20%;
+}
+.error{
+  border-color: rgb(255, 0, 0);
+  background-color: rgb(255, 200, 200);
+}
+.success{
+  border-color: rgb(0, 255, 0);
+  background-color: rgb(200, 255, 200)
+}
+.email_item{
+  border: solid 2px rgb(150, 150, 150);
+  background-color: rgb(220, 220, 220);
+  padding: 0.25em;
+  margin: 0.125em;
+  position: relative;
+  width: 50%;
+  margin-left: 25%;
+}
+.email_item span{
+  position: absolute;
+  right: 5em;
+  top: 32%;
+  text-align: right;
+}
+.email_item input{
+  position: absolute;
+  right: 0.5em;
+  top: 32%;
+  text-align: right;
+}
