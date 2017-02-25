@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from ..courses.models import Course
 import bcrypt
 import re
 
@@ -10,7 +11,7 @@ passRegex = re.compile(r"^")
 class UserManager(models.Manager):
     def AddUser(self, postData):
         errors = []
-
+        """
         #validate
         if len(postData["first_name"]) == 0:
             errors.append("First name must not be left blank")
@@ -41,7 +42,7 @@ class UserManager(models.Manager):
             errors.append("Password confirmation must not be left blank")
         elif postData["passconf"] != postData["password"]:
             errors.append("Password and password confirmation did not match")
-
+        """
         if errors:
             return errors
         else:
@@ -50,7 +51,7 @@ class UserManager(models.Manager):
 
     def Login(self, postData):
         errors = []
-
+        user = None
         #validate
         if len(postData["email"]) == 0:
             errors.append("Must include an email address")
@@ -64,14 +65,20 @@ class UserManager(models.Manager):
                 if bcrypt.hashpw(postData["password"].encode(), user[0].password.encode()) != user[0].password:
                     errors.append("Incorrect password")
 
-            if errors:
-                return errors
+        if errors:
+            return errors
+        else:
+            return user
+
+    def AddCourse(self, userID, courseID):
+        self.get(id = userID).courses.add(Course.objects.get(id = courseID))
 
 class User(models.Model):
     email = models.CharField(max_length = 255)
     first_name = models.CharField(max_length = 255)
     last_name = models.CharField(max_length = 255)
     password = models.CharField(max_length = 60)
+    courses = models.ManyToManyField(Course, related_name = "users_of")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 

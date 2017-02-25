@@ -26,4 +26,4 @@ def createUser(request):
         return redirect("/success")
 
 def success(request):
-    return render(request, "login/success.html")
+    return redirect("Time:Index")

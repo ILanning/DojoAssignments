@@ -12,7 +12,7 @@
         <p>{{message}}</p>
       {% endfor %}
     {% endif %}
-    <form class="" action="/create" method="post">
+    <form class="" action="{% url 'Login:Create' %}" method="post">
       {% csrf_token %}
       <h2>Register</h2>
       <ul>
@@ -31,7 +31,7 @@
       </ul>
       <input type="submit" value="Submit">
     </form>
-    <form class="" action="/login" method="post">
+    <form class="" action="{% url 'Login:Login' %}" method="post">
       {% csrf_token %}
       <h2>Log In</h2>
       <ul>

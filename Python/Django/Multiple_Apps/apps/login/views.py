@@ -11,19 +11,22 @@ def login(request):
     if isinstance(errors, list) and len(errors) != 0:
         for error in errors:
             messages.error(request, error)
-        return redirect('/')
+        return redirect('Login:Index')
     else:
-        return redirect("/success")
+        request.session["user"] = errors.id
+        return redirect("Courses:Index")
 
 def createUser(request):
+    print "createUser called"
     errors = User.objects.AddUser(request.POST)
 
     if isinstance(errors, list) and len(errors) != 0:
         for error in errors:
             messages.error(request, error)
-        return redirect('/')
+        return redirect('Login:Index')
     else:
-        return redirect("/success")
+        request.session["user"] = errors.id
+        return redirect("Courses:Index")
 
 def success(request):
     return render(request, "login/success.html")
