@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Register</title>
+  </head>
+  <body>
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+    {% endif %}
+    <form action="{% url 'Login:AddUser' %}" method="post">
+      {% csrf_token %}
+      <label for="first_name">First Name:</label>
+      <input type="text" name="first_name" value="">
+      <label for="last_name">Last Name:</label>
+      <input type="text" name="last_name" value="">
+      <label for="email">Email:</label>
+      <input type="text" name="email" value="">
+      <label for="password">Password:</label>
+      <input type="text" name="password" value="">
+      <label for="passconf">Password Confirmation:</label>
+      <input type="text" name="passconf" value="">
+      <input type="submit" name="" value="Sign Up">
+      <input type="hidden" name="return_page" value="{{return_page}}">
+    </form>
+  </body>
+</html>
