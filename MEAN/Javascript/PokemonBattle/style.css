@@ -1,0 +1,49 @@
+body{
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+div{
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+.playfieldContainer{
+  width: 100%;
+  margin: 0;
+}
+.playerList{
+  border:solid 1px red;
+  display: inline-block;
+  width: 10%;
+  vertical-align: top;
+  margin: 0;
+}
+.cardList{
+  border: solid 1px blue;
+  display: inline-block;
+  width: 14%;
+  vertical-align: top;
+  margin: 0;
+}
+.playerList ul li{
+  display: block;
+}
+.playerList li:hover, .cardList li:hover{
+  background-color: yellow;
+}
+.field{
+  display: inline-block;
+  width: 40%;
+}
+.card{
+  display:inline-block;
+  width: 49%;
+}
+.card img{
+  width: 100%;
+  height: auto;
+}
+.field form{
+  text-align: center;
+}

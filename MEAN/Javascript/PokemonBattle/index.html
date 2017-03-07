@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pokemon Battle</title>
+    <script type="text/javascript" src="..\test\bower_components\jquery\dist\jquery.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="playfieldContainer">
+      <ul class="playerList" id="players1"></ul>
+      <div class="cardList" id="player1Cards">
+        <ul></ul>
+        <input type="button" list="1" value="Make Card">
+      </div>
+      <div class="field">
+        <div class="card" id="card1">
+          <img>
+          <p>Name:<span class="cardName"></span></p>
+          <p>Attack:<span class="cardAttack"></span></p>
+          <p>Defense:<span class="cardDefense"></span></p>
+        </div>
+        <div class="card" id="card2">
+          <img>
+          <p>Name:<span class="cardName"></span></p>
+          <p>Attack:<span class="cardAttack"></span></p>
+          <p>Defense:<span class="cardDefense"></span></p>
+        </div>
+        <form class="fightBox">
+          <input type="submit" value="Fight">
+          <p>Result: <span></span></p>
+        </form>
+      </div>
+      <div class="cardList" id="player2Cards">
+        <ul></ul>
+        <input type="button" list=2 value="Make Card">
+      </div>
+      <ul class="playerList" id="players2"></ul>
+    </div>
+    <div id="playerCreator">
+      <label for="name">Name: </label>
+      <input type="text" name="name" value="">
+      <input type="button" value="Create">
+    </div>
+  </body>
+</html>
