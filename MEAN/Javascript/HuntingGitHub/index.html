@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hunting GitHub</title>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("button").click(function(){
+          $.get("https://api.github.com/users/ILanning", function(data){
+            $('p').text(data.name);
+          })
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <button type="button" name="button">Get Name</button>
+    <p></p>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Button Fun</title>
+    <style>
+      button{
+        background-color: blue;
+      }
+      button:hover{
+        background-color: green;
+      }
+      .red{
+        background-color: red;
+      }
+      .red:hover{
+        background-color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <button type="button" name="button">Test</button>
+    <button type="button" name="button">Test2</button>
+
+    <script type="text/javascript">
+      var buttons = document.getElementsByTagName("button");
+      for (let i = 0; i < buttons.length; i++){
+        buttons[i].onclick = function(){
+          thisButton = buttons[i];
+          if(thisButton.getAttribute("clicked") === "true"){
+            thisButton.setAttribute("class", "");
+            thisButton.setAttribute("clicked", "");
+          }
+          else{
+            thisButton.setAttribute("class", "red");
+            thisButton.setAttribute("clicked", "true");
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
