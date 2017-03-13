@@ -1,136 +1,29 @@
-var canvas;
-var gl;
-
-var spritesheet;
+var gl; // A global variable for the WebGL context
 
 function start() {
-  canvas = document.getElementById("glcanvas");
+  var canvas = document.getElementById('glCanvas');
 
-  initWebGL(canvas);      // Initialize the GL context
-
+  // Initialize the GL context
+  gl = initWebGL(canvas);
+  console.log("Function called")
   // Only continue if WebGL is available and working
-
-  if (gl) {
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
-    gl.clearDepth(1.0);                 // Clear everything
-    gl.enable(gl.DEPTH_TEST);           // Enable depth testing
-    gl.depthFunc(gl.LEQUAL);            // Near things obscure far things
-
-    // Initialize the shaders; this is where all the lighting for the
-    // vertices and so forth is established.
-
-    initShaders();
-
-    // Here's where we call the routine that builds all the objects
-    // we'll be drawing.
-
-    initBuffers();
-
-    // Next, load and set up the textures we'll be using.
-
-    initTextures();
-
-    // Set up to draw the scene periodically.
-
-    setInterval(drawScene, 15);
-  }
-}
-
-function initWebGL() {
-  gl = null;
-
-  try {
-    gl = canvas.getContext("experimental-webgl");
-  }
-  catch(e) {
-  }
-
-  // If we don't have a GL context, give up now
-
   if (!gl) {
-    alert("Unable to initialize WebGL. Your browser may not support it.");
+    return;
   }
-}
 
-function initBuffers() {
-
-  // Create a buffer for the cube's vertices.
-
-  cubeVerticesBuffer = gl.createBuffer();
-
-  // Select the cubeVerticesBuffer as the one to apply vertex
-  // operations to from here out.
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
-
-  // Now create an array of vertices for the cube.
-
-  var vertices = [
-  ];
-
-  // Now pass the list of vertices into WebGL to build the shape. We
-  // do this by creating a Float32Array from the JavaScript array,
-  // then use it to fill the current vertex buffer.
-
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-
-  // Map the texture onto the cube's faces.
-
-  cubeVerticesTextureCoordBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesTextureCoordBuffer);
-
-  var textureCoordinates = [
-  ];
-
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoordinates),
-                gl.STATIC_DRAW);
-
-  // Build the element array buffer; this specifies the indices
-  // into the vertex array for each face's vertices.
-
-  cubeVerticesIndexBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVerticesIndexBuffer);
-
-  // This array defines each face as two triangles, using the
-  // indices into the vertex array to specify each triangle's
-  // position.
-
-  var cubeVertexIndices = [
-    0,  1,  2,      0,  2,  3,    // front
-    4,  5,  6,      4,  6,  7,    // back
-    8,  9,  10,     8,  10, 11,   // top
-    12, 13, 14,     12, 14, 15,   // bottom
-    16, 17, 18,     16, 18, 19,   // right
-    20, 21, 22,     20, 22, 23    // left
-  ]
-
-  // Now send the element array to GL
-
-  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,
-      new Uint16Array(cubeVertexIndices), gl.STATIC_DRAW);
-}
-
-function initTextures() {
-  cubeTexture = gl.createTexture();
-  cubeImage = new Image();
-  cubeImage.onload = function() { handleTextureLoaded(cubeImage, cubeTexture); }
-  cubeImage.src = "cubetexture.png";
-}
-
-function handleTextureLoaded(image, texture) {
-  console.log("handleTextureLoaded, image = " + image);
-  gl.bindTexture(gl.TEXTURE_2D, texture);
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA,
-        gl.UNSIGNED_BYTE, image);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
-  gl.generateMipmap(gl.TEXTURE_2D);
-  gl.bindTexture(gl.TEXTURE_2D, null);
+  // Set clear color to black, fully opaque
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  // Enable depth testing
+  gl.enable(gl.DEPTH_TEST);
+  // Near things obscure far things
+  gl.depthFunc(gl.LEQUAL);
+  // Clear the color as well as the depth buffer.
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 }
 
 function initShaders() {
-  var fragmentShader = getShader(gl, "shader-fs");
-  var vertexShader = getShader(gl, "shader-vs");
+  var fragmentShader = getShader(gl, 'shader-fs');
+  var vertexShader = getShader(gl, 'shader-vs');
 
   // Create the shader program
 
@@ -142,82 +35,103 @@ function initShaders() {
   // If creating the shader program failed, alert
 
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-    alert("Unable to initialize the shader program: " + gl.getProgramInfoLog(shader));
+    console.log('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shaderProgram));
   }
 
   gl.useProgram(shaderProgram);
 
-  vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+  vertexPositionAttribute = gl.getAttribLocation(shaderProgram, 'aVertexPosition');
   gl.enableVertexAttribArray(vertexPositionAttribute);
-
-  textureCoordAttribute = gl.getAttribLocation(shaderProgram, "aTextureCoord");
-  gl.enableVertexAttribArray(textureCoordAttribute);
 }
 
-//
-// getShader
-//
-// Loads a shader program by scouring the current document,
-// looking for a script with the specified ID.
-//
-function getShader(gl, id) {
-  var shaderScript = document.getElementById(id);
+function initWebGL(canvas) {
+  gl = null;
 
-  // Didn't find an element with the specified ID; abort.
+  // Try to grab the standard context. If it fails, fallback to experimental.
+  gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+  // If we don't have a GL context, give up now
+  if (!gl) {
+    alert('Unable to initialize WebGL. Your browser may not support it.');
+  }
+
+  return gl;
+}
+
+function getShader(gl, id, type) {
+  var shaderScript, theSource, currentChild, shader;
+
+  shaderScript = document.getElementById(id);
 
   if (!shaderScript) {
     return null;
   }
 
-  // Walk through the source element's children, building the
-  // shader source string.
-
-  var theSource = "";
-  var currentChild = shaderScript.firstChild;
-
-  while(currentChild) {
-    if (currentChild.nodeType == 3) {
-      theSource += currentChild.textContent;
+  theSource = shaderScript.text;
+  if (!type) {
+    if (shaderScript.type == 'x-shader/x-fragment') {
+      type = gl.FRAGMENT_SHADER;
+    } else if (shaderScript.type == 'x-shader/x-vertex') {
+      type = gl.VERTEX_SHADER;
+    } else {
+      // Unknown shader type
+      return null;
     }
-
-    currentChild = currentChild.nextSibling;
   }
-
-  // Now figure out what type of shader script we have,
-  // based on its MIME type.
-
-  var shader;
-
-  if (shaderScript.type == "x-shader/x-fragment") {
-    shader = gl.createShader(gl.FRAGMENT_SHADER);
-  } else if (shaderScript.type == "x-shader/x-vertex") {
-    shader = gl.createShader(gl.VERTEX_SHADER);
-  } else {
-    return null;  // Unknown shader type
-  }
-
-  // Send the source to the shader object
-
+  shader = gl.createShader(type);
   gl.shaderSource(shader, theSource);
 
   // Compile the shader program
-
   gl.compileShader(shader);
 
   // See if it compiled successfully
-
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    alert("An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader));
-    return null;
+      console.log('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(shader));
+      gl.deleteShader(shader);
+      return null;
   }
 
   return shader;
 }
+var horizAspect = 480.0/640.0;
 
-//
-// Matrix utility functions
-//
+function initBuffers() {
+  squareVerticesBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesBuffer);
 
+  var vertices = [
+    1.0,  1.0,  0.0,
+    -1.0, 1.0,  0.0,
+    1.0,  -1.0, 0.0,
+    -1.0, -1.0, 0.0
+  ];
+  var colors = [
+    1.0,  1.0,  1.0,  1.0,    // white
+    1.0,  0.0,  0.0,  1.0,    // red
+    0.0,  1.0,  0.0,  1.0,    // green
+    0.0,  0.0,  1.0,  1.0     // blue
+  ];
+
+  squareVerticesColorBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesColorBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+}
+
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+}
+function drawScene() {
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+  perspectiveMatrix = makePerspective(45, 640.0/480.0, 0.1, 100.0);
+
+  loadIdentity();
+  mvTranslate([-0.0, 0.0, -6.0]);
+
+  gl.bindBuffer(gl.ARRAY_BUFFER, squareVerticesBuffer);
+  gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
+  setMatrixUniforms();
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+}
 function loadIdentity() {
   mvMatrix = Matrix.I(4);
 }
@@ -237,36 +151,4 @@ function setMatrixUniforms() {
   var mvUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
   gl.uniformMatrix4fv(mvUniform, false, new Float32Array(mvMatrix.flatten()));
 }
-
-var mvMatrixStack = [];
-
-function mvPushMatrix(m) {
-  if (m) {
-    mvMatrixStack.push(m.dup());
-    mvMatrix = m.dup();
-  } else {
-    mvMatrixStack.push(mvMatrix.dup());
-  }
-}
-
-function mvPopMatrix() {
-  if (!mvMatrixStack.length) {
-    throw("Can't pop from an empty matrix stack.");
-  }
-
-  mvMatrix = mvMatrixStack.pop();
-  return mvMatrix;
-}
-
-function mvRotate(angle, v) {
-  var inRadians = angle * Math.PI / 180.0;
-  var m = Matrix.Rotation(inRadians, $V([v[0], v[1], v[2]])).ensure4x4();
-  multMatrix(m);
-}
-
-drawScene(){}
-
-class Sprite(){
-  var mvMatrix;
-  var
-}
+//gl.viewport(0, 0, canvas.width, canvas.height);
