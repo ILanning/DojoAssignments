@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="/">Return to creation page</a>
+    <h1>Quotes:</h1>
+    <% for (var i = 0; i < quotes.length; i++) { %>
+      <div class="quoteblock">
+        <p><%= quotes[i].text %></p>
+        <span>Likes: <%= quotes[i].likes %></span>
+        <span><%= quotes[i].owner %>, <%= quotes[i].createdAt %></span>
+        <form action="/like/" method="post">
+          <input type="hidden" name="id" value="<%= quotes[i].id %>">
+          <input type="submit" value="Like">
+        </form>
+      </div>
+    <% } %>
+  </body>
+</html>

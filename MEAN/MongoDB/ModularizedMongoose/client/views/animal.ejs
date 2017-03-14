@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Animal: <%= name %></title>
+  </head>
+  <body>
+    <form action="/animals/<%= id %>" method="post">
+      <p>Edit Animal:</p>
+      <label for="name">Name:</label>
+      <input type="text" name="name" value="<%= name %>">
+      <label for="color">Color:</label>
+      <input type="text" name="color" value="<%= color %>">
+      <input type="submit" value="Submit">
+    </form>
+    <form action="/animals/destroy/<%= id %>" method="post">
+      <input type="hidden" name="id" value="<%= id %>">
+      <input type="submit" value="Delete">
+    </form>
+    <a href="/">Return to Index</a>
+  </body>
+</html>

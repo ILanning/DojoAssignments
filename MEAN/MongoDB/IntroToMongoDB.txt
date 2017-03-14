@@ -1,0 +1,2 @@
+use my_first_db
+db.createCollection("students")
