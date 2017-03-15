@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="myAppModule">
+  <head>
+    <meta charset="utf-8">
+    <title>Controlling Users</title>
+    <style>
+    a{
+      text-decoration: none;
+    }
+    th{
+      border: solid 1px black;
+      padding: 3px 5px;
+      background-color: rgb(230,230,230);
+    }
+    table{
+      width: 100%;
+    }
+    table td input, .actionsBox{
+      width: 100px;
+    }
+    .createUserForm{
+      border: solid 1px black;
+      background-color: rgb(240, 240, 240);
+      border-radius: 3px;
+      display: block;
+      width: 300px;
+      margin-left: calc(50% - 150px);
+      padding: 5px;
+    }
+    .createUserForm label, input{
+      display: inline-block;
+      width: 146px;
+      margin: 0;
+    }
+    .createUserForm input[type="submit"]{
+      width: 40%;
+      margin: 5px 0 5px 30%;
+    }
+    </style>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript">
+      var app = angular.module("myAppModule", []);
+      app.controller("userController", function($scope){
+        $scope.users = [];
+        $scope.tableSort = "firstName";
+        $scope.reverse = false;
+        $scope.addUser = function(){
+          $scope.newUser.date = Date();
+          $scope.users.push($scope.newUser);
+          $scope.newUser = {};
+        };
+        $scope.removeUser = function(index){
+          $scope.users.splice(index, 1);
+        };
+      });
+    </script>
+  </head>
+  <body ng-controller="userController as uC">
+    <form class="createUserForm" ng-submit="addUser();">
+    <label for="firstName">First Name:</label>
+      <input type="text" name="firstName" ng-model="newUser.firstName">
+      <label for="lastName">Last Name:</label>
+      <input type="text" name="lastName" ng-model="newUser.lastName">
+      <label for="faveLanguage">Favorite Language:</label>
+      <input type="text" name="faveLanguage" ng-model="newUser.faveLanguage">
+      <input type="submit" value="Create">
+    </form>
+    <form>
+      <input type="text" name="nameFilter" placeholder="Filter" ng-model="tableFilter">
+    </form>
+    <table>
+      <tr>
+        <th>First Name <a href="#" ng-click="tableSort='firstName';reverse=false;">↑</a> <a href="#" ng-click="tableSort='firstName';reverse=true;">↓</a></th>
+        <th>Last Name <a href="#" ng-click="tableSort='lastName';reverse=false;">↑</a> <a href="#" ng-click="tableSort='lastName';reverse=true;">↓</a></th>
+        <th>Fav Language <a href="#" ng-click="tableSort='faveLanguage';reverse=false;">↑</a> <a href="#" ng-click="tableSort='faveLanguage';reverse=true;">↓</a></th>
+        <th>Date <a href="#" ng-click="tableSort='date';reverse=false;">↑</a> <a href="#" ng-click="tableSort='date';reverse=true;">↓</a></th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="user in users | filter:tableFilter | orderBy:tableSort:reverse track by $index">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.faveLanguage}}</td>
+        <td>{{user.date}}</td>
+        <td class="actionsBox"><form ng-submit="removeUser($index);">
+          <input type="submit" value="Delete">
+        </form></td>
+      </tr>
+    </table>
+  </body>
+</html>
