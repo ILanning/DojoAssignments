@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="productApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Products with a Factory</title>
+    <style>
+      a{
+        text-decoration: none;
+      }
+    </style>
+    <script src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript">
+      var productApp = angular.module("productApp", []);
+
+      productApp.factory("productFactory", function(){
+        var factory = {};
+        factory.products = [];
+        factory.add = function(product){
+          factory.products.push(product);
+        };
+        factory.remove = function(index){
+          factory.products.splice(index, 1);
+        };
+        factory.getOne = function(index){
+          return factory.products[index];
+        };
+        factory.getAll = function(){
+          return factory.products;
+        };
+        return factory;
+      });
+
+      productApp.controller("productController", ["$scope", "productFactory",function($scope, productFactory){
+        $scope.newProduct = {};
+        $scope.reverseTable = true;
+        $scope.addProduct = function(){
+          if($scope.newProduct.name && $scope.newProduct.price){
+            $scope.newProduct.price = parseFloat($scope.newProduct.price);
+            productFactory.add($scope.newProduct);
+            $scope.newProduct = {};
+          }
+        };
+        $scope.removeProduct = function(index){
+          productFactory.remove(index);
+        }
+        $scope.getProducts = function(){
+          return productFactory.getAll();
+        }
+      }]);
+    </script>
+  </head>
+  <body ng-controller="productController as pC">
+    <form ng-submit="addProduct();">
+      <label for="name">Product Name:</label>
+      <input type="text" name="name" ng-model="newProduct.name">
+      <label for="price">Product Price:</label>
+      <input type="number" name="price" step="0.01" ng-model="newProduct.price">
+      <input type="submit" value="Create">
+    </form>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Price <a href="#" ng-click="reverseTable=true;">↑</a><a href="#" ng-click="reverseTable=false;">↓</a></th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="product in getProducts() | orderBy:'price':reverseTable track by $index">
+        <td>{{product.name}}</td>
+        <td>{{product.price | currency}}</td>
+        <td><form><input type="submit" value="delete" ng-click="removeProduct($index);"></form></td>
+      </tr>
+    </table>
+  </body>
+</html>
