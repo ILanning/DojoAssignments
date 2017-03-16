@@ -19,7 +19,7 @@ module.exports = {
   create : function(req, res){
     var newPerson = new Person();
     newPerson.name = req.params.name;
-    newPerson.save;
+    newPerson.save();
     res.json(newPerson);
   },
   destroy : function(req, res){

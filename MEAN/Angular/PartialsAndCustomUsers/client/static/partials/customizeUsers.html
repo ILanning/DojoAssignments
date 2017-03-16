@@ -1,0 +1,23 @@
+<div ng-controller="CustomizeUsersController as cC">
+    <form ng-submit="createUser();">
+      <label for="name">Product Name:</label>
+      <input type="text" name="name" ng-model="newProduct.name">
+      <label for="price">Product Price:</label>
+      <input type="number" name="price" step="0.01" ng-model="newProduct.price">
+      <input type="submit" value="Create">
+    </form>
+    <table>
+      <tr>
+        <th>First Name <a href="#" ng-click="tableSort=firstName; reverseTable=true;">↑</a><a href="#" ng-click="tableSort=firstName; reverseTable=false;">↓</a><</th>
+        <th>Last Name <a href="#" ng-click="tableSort=lastName; reverseTable=true;">↑</a><a href="#" ng-click="tableSort=lastName; reverseTable=false;">↓</a></th>
+        <th>Fave Language <a href="#" ng-click="tableSort=faveLanguage; reverseTable=true;">↑</a><a href="#" ng-click="tableSort=faveLanguage; reverseTable=false;">↓</a></th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="user in getUsers() | orderBy:tableSort:reverseTable">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.faveLanguage}}</td>
+        <td><form><input type="submit" value="Delete" ng-click="removeUser(user.id);"></form></td>
+      </tr>
+    </table>
+</div>

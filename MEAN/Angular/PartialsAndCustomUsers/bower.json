@@ -1,0 +1,13 @@
+{
+  "name": "PartialsAndCustomUsers",
+  "homepage": "https://github.com/ILanning/DojoAssignments",
+  "authors": [
+    "Ian Lanning <ianclanning@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.6.3"
+  }
+}

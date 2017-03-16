@@ -1,0 +1,14 @@
+<div ng-controller="UserListsController as lC">
+<table>
+  <tr>
+    <th>First Name <a href="#" ng-click="tableSort=firstName; reverseTable=true;">↑</a><a href="#" ng-click="tableSort=firstName; reverseTable=false;">↓</a><</th>
+    <th>Last Name <a href="#" ng-click="tableSort=lastName; reverseTable=true;">↑</a><a href="#" ng-click="tableSort=lastName; reverseTable=false;">↓</a></th>
+    <th>Fave Language <a href="#" ng-click="tableSort=faveLanguage; reverseTable=true;">↑</a><a href="#" ng-click="tableSort=faveLanguage; reverseTable=false;">↓</a></th>
+  </tr>
+  <tr ng-repeat="user in getUsers() | orderBy:tableSort:reverseTable">
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.faveLanguage}}</td>
+  </tr>
+</table>
+</div>
