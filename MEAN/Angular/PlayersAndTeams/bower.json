@@ -1,5 +1,5 @@
 {
-  "name": "PartialsAndCustomUsers",
+  "name": "PlayersAndTeams",
   "homepage": "https://github.com/ILanning/DojoAssignments",
   "authors": [
     "Ian Lanning <ianclanning@gmail.com>"
@@ -9,6 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.6.3",
-    "angular-route": "^1.6.3"
+    "angular-route": "^1.6.3",
+    "angular-messages": "^1.6.3"
   }
 }

@@ -1,0 +1,23 @@
+<div ng-controller="TeamsController as tC">
+  <form ng-submit="addTeam()" name="teamForm" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name" ng-model="newTeam.name" minlength=4 required>
+    <input type="submit" value="Create">
+  </form>
+  <div ng-messages="teamForm.name.$error">
+    <p ng-message="minlength">The name must be at least 4 characters long.</p>
+    <p ng-message="required">A name must be given.</p>
+  </div>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    <tr ng-repeat="team in getTeams() | orderBy:'name':reverse">
+      <td>{{team.name}}</td>
+      <td><form ng-submit="removeTeam(team.id);">
+        <input type="submit" value="Delete">
+      </form></td>
+    </tr>
+  </table>
+</div>

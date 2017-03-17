@@ -1,16 +1,18 @@
 <div ng-controller="CustomizeUsersController as cC">
     <form ng-submit="createUser();">
-      <label for="name">Product Name:</label>
-      <input type="text" name="name" ng-model="newProduct.name">
-      <label for="price">Product Price:</label>
-      <input type="number" name="price" step="0.01" ng-model="newProduct.price">
+      <label for="firstName">First Name:</label>
+      <input type="text" name="firstName" ng-model="newUser.firstName">
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastName" ng-model="newUser.lastName">
+      <label for="faveLanguage">Fave Language:</label>
+      <input type="text" name="faveLanguage" ng-model="newUser.faveLanguage">
       <input type="submit" value="Create">
     </form>
     <table>
       <tr>
-        <th>First Name <a href="#" ng-click="tableSort=firstName; reverseTable=true;">↑</a><a href="#" ng-click="tableSort=firstName; reverseTable=false;">↓</a><</th>
-        <th>Last Name <a href="#" ng-click="tableSort=lastName; reverseTable=true;">↑</a><a href="#" ng-click="tableSort=lastName; reverseTable=false;">↓</a></th>
-        <th>Fave Language <a href="#" ng-click="tableSort=faveLanguage; reverseTable=true;">↑</a><a href="#" ng-click="tableSort=faveLanguage; reverseTable=false;">↓</a></th>
+        <th>First Name <a href="#" ng-click="tableSort='firstName'; reverseTable=true;">↑</a><a href="#" ng-click="tableSort='firstName'; reverseTable=false;">↓</a><</th>
+        <th>Last Name <a href="#" ng-click="tableSort='lastName'; reverseTable=true;">↑</a><a href="#" ng-click="tableSort='lastName'; reverseTable=false;">↓</a></th>
+        <th>Fave Language <a href="#" ng-click="tableSort='faveLanguage'; reverseTable=true;">↑</a><a href="#" ng-click="tableSort='faveLanguage'; reverseTable=false;">↓</a></th>
         <th>Actions</th>
       </tr>
       <tr ng-repeat="user in getUsers() | orderBy:tableSort:reverseTable">

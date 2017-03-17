@@ -4,8 +4,15 @@
     <meta charset="utf-8">
     <title>Partials and Custom Users</title>
     <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
     <script type="text/javascript">
       var app = angular.module("usersApp", ["ngRoute"]);
+
+      app.config(function($routeProvider){
+        $routeProvider.when('/', { templateUrl : "partials/customizeUsers.html" })
+                      .when("/users", { templateUrl : "partials/userList.html" })
+                      .otherwise({ redirectTo : '/' });
+      });
 
       app.factory("userFactory", function(){
         var factory = {};
@@ -36,27 +43,39 @@
         return factory;
       });
 
-      app.controller("CustomizeUsersController", ["$scope", "userFactory", function($scope, userFactory){
+      app.controller("CustomizeUsersController", ["$scope", "$location", "userFactory", function($scope, $location, userFactory){
         $scope.tableSort = "firstName";
         $scope.reverseTable = false;
         $scope.newUser = {};
 
         $scope.createUser = function(){
-          userFactory.create(newUser);
-          newUser = {};
-        }
+          userFactory.create($scope.newUser);
+          $scope.newUser = {};
+          $location.url("/users");
+        };
         $scope.removeUser = function(id){
           userFactory.remove(id);
-        }
+          $location.url("/users");
+        };
+        $scope.getUsers = function(){
+          return userFactory.index();
+        };
       }]);
 
       app.controller("UserListsController", ["$scope", "userFactory", function($scope, userFactory){
         $scope.tableSort = "firstName";
         $scope.reverseTable = false;
+
+        $scope.getUsers = function(){
+          return userFactory.index();
+        };
       }]);
     </script>
   </head>
   <body>
+    <a href="#!/">Manage Users</a> | <a href="#!/users">List Users</a>
+    <div ng-view="">
 
+    </div>
   </body>
 </html>

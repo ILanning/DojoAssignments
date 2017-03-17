@@ -1,0 +1,23 @@
+<div ng-controller="PlayersController as pC">
+  <form ng-submit="addPlayer()" name="playerForm" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name" ng-model="newPlayer.name" minlength=4 required>
+    <input type="submit" value="Create">
+  </form>
+  <div ng-messages="playerForm.name.$error">
+    <p ng-message="minlength">The name must be at least 4 characters long.</p>
+    <p ng-message="required">A name must be given.</p>
+  </div>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    <tr ng-repeat="player in getPlayers() | orderBy:'name':reverse">
+      <td>{{player.name}}</td>
+      <td><form ng-submit="removePlayer(player.id);">
+        <input type="submit" value="Delete">
+      </form></td>
+    </tr>
+  </table>
+</div>

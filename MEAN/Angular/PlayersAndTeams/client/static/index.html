@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Player and Teams</title>
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+    <script src="angular-messages/angular-messages.js"></script>
+    <script type="text/javascript">
+      var app = angular.module("mainApp", ["ngRoute", "ngMessages"]);
+
+      app.config(function($routeProvider){
+        $routeProvider.when("/players", { templateUrl : "partials/players.html" })
+                      .when("/teams", { templateUrl : "partials/teams.html" })
+                      .when("/associations", { templateUrl : "partials/associations.html" })
+                      .otherwise( { redirectTo : "/players" });
+      });
+
+      app.factory("playerFactory", function(){
+        var factory = {};
+        var nextID = 0;
+        var players = {};
+
+        factory.create = function(player){
+          player.id = nextID;
+          nextID++;
+          players[player.id] = player;
+        };
+        factory.remove = function(id){
+          delete players[id];
+        };
+        factory.get = function(id){
+          return players[id];
+        };
+        factory.index = function(){
+          var result = [];
+          for(key in players)
+            result.push(players[key]);
+          return result;
+        };
+        return factory;
+      });
+      app.factory("teamFactory", function(){
+        var factory = {};
+        var nextID = 0;
+        var teams = {};
+
+        factory.create = function(team){
+          team.id = nextID;
+          nextID++;
+          teams[team.id] = team;
+        };
+        factory.remove = function(id){
+          delete teams[id];
+        };
+        factory.get = function(id){
+          return teams[id];
+        };
+        factory.index = function(){
+          var result = [];
+          for(key in teams)
+            result.push(teams[key]);
+          return result;
+        };
+        return factory;
+      });
+
+      app.controller("PlayersController", ["$scope", "playerFactory", function($scope, playerFactory){
+        $scope.reverse  = false;
+        $scope.newPlayer = {};
+
+        $scope.addPlayer = function(){
+          playerFactory.create($scope.newPlayer);
+          $scope.newPlayer = {};
+        };
+        $scope.removePlayer = function(id){
+          playerFactory.remove(id);
+        }
+        $scope.getPlayers = function(){
+          return playerFactory.index();
+        }
+      }]);
+      app.controller("TeamsController", ["$scope", "teamFactory", function($scope, teamFactory){
+        $scope.reverse  = false;
+        $scope.newTeam = {};
+
+        $scope.addTeam = function(){
+          teamFactory.create($scope.newTeam);
+          $scope.newTeam = {};
+        };
+        $scope.removeTeam = function(id){
+          teamFactory.remove(id);
+        };
+        $scope.getTeams = function(){
+          return teamFactory.index();
+        }
+      }]);
+      app.controller("AssociationsController", ["$scope", "playerFactory", "teamFactory", function($scope, playerFactory, teamFactory){
+          $scope.tableSort = "name";
+          $scope.reverse  = false;
+
+          $scope.associate = function(){
+            if($scope.playerID && $scope.teamID)
+              playerFactory.get($scope.playerID).team = $scope.teamID;
+          };
+          $scope.disassociate = function(playerID){
+            delete playerFactory.get(playerID)["team"];
+          };
+          $scope.getPlayers = function(){
+            return playerFactory.index();
+          };
+          $scope.getTeam = function(teamID){
+            return teamFactory.get(teamID);
+          }
+          $scope.getTeams = function(){
+            return teamFactory.index();
+          };
+      }]);
+    </script>
+  </head>
+  <body>
+    <a href="#!/players">Players</a> | <a href="#!/teams">Teams</a> | <a href="#!/associations">Associations</a>
+    <div ng-view="">
+
+    </div>
+  </body>
+</html>

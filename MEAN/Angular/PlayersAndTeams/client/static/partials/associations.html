@@ -1,0 +1,25 @@
+<div ng-controller="AssociationsController as aC">
+  <form ng-submit="associate();" method="post">
+    <select name="players" ng-model="playerID" required>
+      <option ng-repeat="player in getPlayers()" value="{{player.id}}">{{player.name}}</option>
+    </select>
+    <select name="teams" ng-model="teamID" required>
+      <option ng-repeat="team in getTeams()" value="{{team.id}}">{{team.name}}</option>
+    </select>
+    <input type="submit" value="Assign Player to Team">
+  </form>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Actions</th>
+    </tr>
+    <tr ng-repeat="player in getPlayers() | orderBy:'name':reverse">
+      <td>{{player.name}}</td>
+      <td>{{getTeam(player.team).name}}</td>
+      <td><form ng-submit="disassociate(player.id);">
+        <input type="submit" value="Clear Assignment">
+      </form></td>
+    </tr>
+  </table>
+</div>
