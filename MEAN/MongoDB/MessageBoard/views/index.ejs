@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Message Board</title>
+    <style>
+      .red{
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>The Dojo Message Board</h1>
+    <% if(errors){ %>
+      <% for (var x in errors){ %>
+        <p class="red"><%= errors[x].message %></p>
+      <% } %>
+    <% } %>
+    <form action="/post" method="post">
+      <label for="name">Name:</label>
+      <input type="text" name="name">
+      <label for="message">Message:</label>
+      <textarea name="message" rows="8" cols="80"></textarea>
+      <input type="submit" value="Submit">
+    </form>
+    <form action="/reset" method="post">
+      <input type="submit" name="" value="Reset DB">
+    </form>
+    <% for(var i = 0; i < posts.length; i++){ %>
+      <div>
+        <h3><%= posts[i].name %></h3>
+        <h4><%= posts[i].message %></h4>
+        <% for(var j = 0; j < posts[i].comments.length; j++){ %>
+          <div>
+            <p><%= posts[i].comments[j].name %></p>
+            <p><%= posts[i].comments[j].message %></p>
+          </div>
+        <% } %>
+        <form action="/comment" method="post">
+          <input type="hidden" name="postID" value="<%= posts[i]._id %>">
+          <label for="name">Name:</label>
+          <input type="text" name="name">
+          <label for="message">Comment:</label>
+          <textarea name="message" rows="8" cols="80"></textarea>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    <% } %>
+  </body>
+</html>

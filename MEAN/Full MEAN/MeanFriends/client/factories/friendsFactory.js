@@ -4,13 +4,16 @@ app.factory('friendsFactory', ['$http', function($http) {
       //call this method if you want to update or set the friends variable
       $http.get('/friends').then(function(returned_data){
         console.log(returned_data.data);
-        callback(friends);
+        if (typeof(callback) == 'function'){
+          callback(returned_data.data);
+        });
       });
   }
   factory.show = function(id, callback) {
-      $http.get(`/friends/${id}`, function(data){
+      $http.get(`/friends/${id}`, function(returned_data){
+        console.log(returned_data.data);
       if (typeof(callback) == 'function'){
-        callback(data.data);
+        callback(returned_data.data);
       });
   }
   factory.create = function(newfriend, callback) {
@@ -30,9 +33,10 @@ app.factory('friendsFactory', ['$http', function($http) {
     })
   }
   factory.delete = function(id, callback) {
-      $http.delete(`/friends/${id}`, function(data){
+      $http.delete(`/friends/${id}`, function(returned_data){
+      console.log(returned_data.data);
       if (typeof(callback) == 'function'){
-        callback(data.data);
+        callback(returned_data.data);
       });
   }
   return factory;
