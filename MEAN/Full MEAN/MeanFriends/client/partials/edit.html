@@ -1,9 +1,9 @@
-<form ng-controller="editController" ng-submit="/friends/{{_id}}" method="put">
+<form ng-controller="editController" ng-submit="update();" method="put">
   <label for="firstName"></label>
-  <input type="text" name="firstName" ng-model="firstName">
+  <input type="text" name="firstName" ng-model="currentFriend.firstName">
   <label for="lastName"></label>
-  <input type="text" name="lastName" ng-model="lastName">
+  <input type="text" name="lastName" ng-model="currentFriend.lastName">
   <label for="birthday"></label>
-  <input type="date" name="birthday" ng-model="birthday">
+  <input type="date" name="birthday" ng-model="currentFriend.birthday">
   <input type="submit" value="Update Friend">
 </form>

@@ -1,0 +1,23 @@
+<div ng-controller="sessionController">
+  <p ng-repeat="error in errors">{{error}}</p>
+  <form class="logReg" ng-submit="login();" method="post">
+    <ul>
+      <li><label for="email">Email:</label></li>
+      <li ng-hide="hideReg"><label for="firstName">First Name:</label></li>
+      <li ng-hide="hideReg"><label for="lastName">Last Name:</label></li>
+      <li><label for="password">Password:</label></li>
+      <li ng-hide="hideReg"><label for="confpass">Confirm Password:</label></li>
+      <li ng-hide="hideReg"><label for="birthday">Birthday:</label></li>
+    </ul>
+    <ul>
+      <li><input type="text" name="email" ng-model="user.email"></li>
+      <li ng-hide="hideReg"><input type="text" name="firstName" ng-model="user.firstName"></li>
+      <li ng-hide="hideReg"><input type="text" name="lastName" ng-model="user.lastName"></li>
+      <li><input type="password" name="password" ng-model="user.password"></li>
+      <li ng-hide="hideReg"><input type="password" name="confpass" ng-model="user.confpass"></li>
+      <li ng-hide="hideReg"><input type="date" name="birthday" ng-model="user.birthday"></li>
+    </ul>
+    <input type="submit" value="{{hideReg ? 'Log In' : 'Register'}}">
+    <a href="#!/" ng-click="hideReg = !hideReg;">{{hideReg ? "Don't have" : "Have"}} an account?</a>
+  </form>
+</div>

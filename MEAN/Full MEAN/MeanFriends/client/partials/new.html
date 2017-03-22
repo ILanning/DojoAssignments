@@ -1,9 +1,9 @@
-<form ng-controller="newController" ng-submit="edit" method="post">
+<form ng-controller="newController" ng-submit="create();">
   <label for="firstName"></label>
-  <input type="text" name="firstName" ng-model="firstName">
+  <input type="text" name="firstName" ng-model="newFriend.firstName">
   <label for="lastName"></label>
-  <input type="text" name="lastName" ng-model="lastName">
+  <input type="text" name="lastName" ng-model="newFriend.lastName">
   <label for="birthday"></label>
-  <input type="date" name="birthday" ng-model="birthday">
+  <input type="date" name="birthday" ng-model="newFriend.birthday">
   <input type="submit" value="Create Friend">
 </form>

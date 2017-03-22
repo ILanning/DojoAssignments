@@ -1,0 +1,18 @@
+.logReg{
+  width: 325px;
+  margin-left: calc(50% - 162px);
+}
+.logReg ul{
+  display: inline-block;
+  vertical-align:middle;
+  width: 49%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.logReg li{
+  height: 26px;
+}
+.logReg input[type="submit"]{
+  margin-right: 26px;
+}

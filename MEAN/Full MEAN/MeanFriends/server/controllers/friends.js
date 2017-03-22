@@ -11,7 +11,7 @@ module.exports = {
     });
   },
   show: function(req,res){
-    Friend.findById(req.body.id, function(err, result){
+    Friend.findById(req.params.id, function(err, result){
       if(err)
         res.json({ success : false, errors : err });
       else
@@ -28,7 +28,8 @@ module.exports = {
     });
   },
   update: function(req,res){
-    Friend.findById(req.body.ID, function(err, friend){
+    console.log(req);
+    Friend.findById(req.params.id, function(err, friend){
       if(err)
         res.json({ success : false, errors : err });
       friend.firstName = req.body.firstName;
@@ -43,7 +44,7 @@ module.exports = {
     });
   },
   delete: function(req,res){
-    Friend.remove({ id : req.body.id}, function(err){
+    Friend.remove({ id : req.params.id}, function(err){
       if(err)
         res.json({ success : false, errors : err });
       else

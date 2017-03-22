@@ -1,0 +1,15 @@
+{
+  "name": "LoginAndRegistration",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Ian Lanning <ianclanning@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ILanning/DojoAssignments",
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-route": "^1.6.3",
+    "angular-cookies": "^1.6.3"
+  }
+}

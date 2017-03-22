@@ -1,0 +1,14 @@
+{
+  "name": "Tasklist",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-route": "^1.6.3",
+    "angular-messages": "^1.6.3"
+  }
+}
