@@ -1,6 +1,6 @@
 <div ng-controller="sessionController">
   <p ng-repeat="error in errors">{{error}}</p>
-  <form class="logReg" ng-submit="login();" method="post">
+  <form class="logReg" ng-submit="hideReg ? login() : register()" method="post">
     <ul>
       <li><label for="email">Email:</label></li>
       <li ng-hide="hideReg"><label for="firstName">First Name:</label></li>

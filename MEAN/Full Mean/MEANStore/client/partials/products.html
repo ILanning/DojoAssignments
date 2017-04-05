@@ -11,7 +11,8 @@
     <input type="number" name="quantity" ng-model="newProduct.quantity">
     <input type="submit" name="" value="Submit">
   </form>
-  <div ng-repeat="product in products | filter : tableFilter">
+  <div ng-repeat="product in products | filter : tableFilter" ng-if="$index < 5  || showMore">
     {{product.name}}
   </div>
+  <a href="#!/products" ng-click="showMore = !showMore">Show {{showMore ? "Less" : "More"}}</a>
 </div>

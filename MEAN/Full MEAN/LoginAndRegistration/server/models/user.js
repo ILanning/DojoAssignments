@@ -2,9 +2,9 @@ var mongoose = require("mongoose");
 //var bcrypt = require("bcryptjs");
 
 var userSchema = new mongoose.Schema({
-  firstName : { type : String, required : true },
-  lastName : { type : String, required : true },
-  email : { type : String, required : true, unique : true },
+  firstName : { type : String, required : [true, "You need to include a first name!"] },
+  lastName : { type : String, required : true, match : [/b/, "Last name must have a b for some reason."] },
+  email : { type : String, required : true, unique : true, match : [/^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$/, "Not a valid email!"] },
   password : { type : String, required : true },
   birthday : { type : Date, required : true }
 }, { timestamps : true });

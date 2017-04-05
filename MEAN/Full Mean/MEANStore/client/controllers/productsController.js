@@ -1,5 +1,5 @@
 app.controller("productsController", function($scope, productFactory){
-  $scope.showMoreProducts = false;
+  $scope.showMore = false;
   $scope.newProduct = {};
   $scope.tableFilter = "";
 

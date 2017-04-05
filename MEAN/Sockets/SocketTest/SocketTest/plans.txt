@@ -1,0 +1,3 @@
+Get a test server running that can emit, broadcast, and broadcast-all on command from clients
+Create a system to preserve session across refreshes that plays well with sockets
+Test run a positional system

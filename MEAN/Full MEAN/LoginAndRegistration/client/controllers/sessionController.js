@@ -2,31 +2,35 @@ app.controller("sessionController", ["$scope", "$location", "userFactory", funct
   $scope.errors = [];
   $scope.user = {};
   $scope.hideReg = true;
+  $scope.loggedInID = "";
   $scope.login = function(){
+    $scope.errors = [];
     console.log($scope.user);
-    if($scope.hideReg){
-      userFactory.login($scope.user, function(results){
-        if(results.data.success === true){
-          console.log("Success");
-          $location.url("/success");
-          $scope.user = {};
-        }
-        if(results.errors){
-
-        }
-      });
-    }
-    else{
-      userFactory.register($scope.user, function(results){
-        console.log(results);
-        if(results.data.success === "true"){
-          $location.url("/success");
-          $scope.user = {};
-        }
-        if(results.errors){
-
-        }
-      })
-    }
-  }
+    userFactory.login($scope.user, function(data){
+      console.log(data);
+      if(data.success === true){
+        $location.url("/success");
+        $scope.user = {};
+        $scope.loggedInID = data.result._id;
+      }
+      if(data.errors){
+        $scope.errors = data.errors;
+      }
+    });
+  };
+  $scope.register = function(){
+    $scope.errors = [];
+    console.log($scope.user);
+    userFactory.register($scope.user, function(data){
+      console.log(data);
+      if(data.success === true){
+        $location.url("/success");
+        $scope.user = {};
+        $scope.loggedInID = data.result._id;
+      }
+      if(data.errors){
+        $scope.errors = data.errors;
+      }
+    })
+  };
 }]);

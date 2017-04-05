@@ -1,0 +1,27 @@
+<div ng-controller="sessionController">
+  <form ng-submit="logout()" method="post">
+    <p>Full MEAN Wall     Welcome <span ng-bind="username"></span></p>
+  </form>
+  <div ng-controller="postController">
+    <form ng-submit="post(userID)" method="post">
+      <label for="message">Post a message:</label>
+      <textarea name="message" ng-model="newPost" rows="8" cols="80"></textarea>
+      <input type="submit" value="Post a message">
+    </form>
+    <div ng-repeat="post in posts | orderBy: createdAt">
+      <div class="">
+        <p>{{post._user.name}} {{post.createdAt}}</p>
+        <p>{{post.text}}</p>
+      </div>
+      <div ng-repeat="comment in post.comments | orderBy: -createdAt">
+        <p>{{comment._user.username}} - {{comment.createdAt}}</p>
+        <p>{{comment.text}}</p>
+      </div>
+      <form ng-submit="comment(userID, post._id)" method="post">
+        <label for="comment">Post a message:</label>
+        <textarea name="comment" ng-model="newComments[post._id]" rows="8" cols="80"></textarea>
+        <input type="submit" value="Post a comment">
+      </form>
+    </div>
+  </div>
+</div>

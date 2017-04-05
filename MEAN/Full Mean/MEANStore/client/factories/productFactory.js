@@ -1,7 +1,14 @@
 app.factory("productFactory", function($http){
   var factory = {};
   var nextID = 0;
-  var dummyData = [];
+  var dummyData = [
+    { name : "a" },
+    { name : "b" },
+    { name : "c" },
+    { name : "d" },
+    { name : "e" },
+    { name : "f" }
+  ];
 
   factory.index = function(callback){
     // $http.get("/products").then(function(results){
