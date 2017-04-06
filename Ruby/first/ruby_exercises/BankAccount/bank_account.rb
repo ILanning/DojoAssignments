@@ -1,5 +1,5 @@
 class BankAccount
-  attr_reader :account_num, :savings, :checking
+  attr_reader :account_num, :savings, :checking, :interest_rate
   @@num_of_accounts = 0
   protected
     def gen_account_num
@@ -22,27 +22,22 @@ class BankAccount
       return self
     end
     def withdraw_savings quantity
-      if quantity > @savings
-        puts "Insufficient funds!"
-      else
-        @savings -= quantity
-        puts "Success!"
-      end
+      raise ArgumentError, "Insufficient funds in savings!" unless quantity <= @savings
+      @savings -= quantity
       return self
     end
     def withdraw_checking quantity
-      if quantity > @checking
-        puts "Insufficient funds!"
-      else
-        @checking -= quantity
-        puts "Success!"
-      end
+      raise ArgumentError, "Insufficient funds in checking!" unless quantity <= @checking
+      @checking -= quantity
       return self
     end
     def self.view_account_num
       puts @@num_of_accounts
     end
-    def view_money
+    def total
+      return @savings + @checking
+    end
+    def view_total
       puts "Total: #{@savings + @checking}"
       return self
     end
@@ -55,7 +50,3 @@ class BankAccount
       return self
     end
 end
-
-BankAccount.new.deposit_savings(12).deposit_checking(30).view_money.account_information.withdraw_checking(40)
-BankAccount.new
-BankAccount.view_account_num

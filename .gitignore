@@ -115,6 +115,8 @@ ClientBin/
 *.[Pp]ublish.xml
 *.pfx
 *.publishsettings
+typings.json
+typings/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -151,6 +153,46 @@ $RECYCLE.BIN/
 
 # Python
 *.pyc
+
+#Ruby
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+## Environment normalization:
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
+
+#Rails
+capybara-*.html
+.rspec
+/log
+/tmp
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/public/system
+/coverage/
+/spec/tmp
+*.orig
+rerun.txt
+pickle-email-*.html
+# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
+config/initializers/secret_token.rb
+# Ignore pow environment settings
+.powenv
+
+#Vagrant
+.vagrant/
 
 # Non-Code Folders
 Content Files/
