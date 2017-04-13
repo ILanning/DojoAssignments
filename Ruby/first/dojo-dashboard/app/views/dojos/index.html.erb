@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>All the Dojos</title>
+  </head>
+  <body>
+    <h1>Listing <%= @dojos.length %> Dojos</h1>
+    <a href="/dojos/new">New Dojo</a>
+    <table>
+      <thead>
+        <th>Coding Dojo Branch</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>State</th>
+      </thead>
+      <% @dojos.each do |dojo| %>
+        <tr>
+          <td><%= dojo.branch %></td>
+          <td><%= dojo.street %></td>
+          <td><%= dojo.city %></td>
+          <td><%= dojo.state %></td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>

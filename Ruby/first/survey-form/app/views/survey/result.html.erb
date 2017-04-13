@@ -1,0 +1,25 @@
+<h1>Survey#result</h1>
+<p>Find me in app/views/survey/result.html.erb</p>
+<% if flash[:message] %>
+  <h4><%= flash[:message] %></h4>
+<% end %>
+<table>
+  <h3>Submitted Information:</h3>
+  <tr>
+    <td>Name:</td>
+    <td><%= @results[:name] %></td>
+  </tr>
+  <tr>
+    <td>Dojo Location:</td>
+    <td><%= @results[:location] %></td>
+  </tr>
+  <tr>
+    <td>Favorite Language:</td>
+    <td><%= @results[:language] %></td>
+  </tr>
+  <tr>
+    <td>Comment:</td>
+    <td><%= @results[:comment] %></td>
+  </tr>
+  <a href="/">Go Back</a>
+</table>

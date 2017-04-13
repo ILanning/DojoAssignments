@@ -1,0 +1,22 @@
+<h1>Survey#show</h1>
+<p>Find me in app/views/survey/show.html.erb</p>
+<form class="" action="/result" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="survey[name]">Your Name:</label>
+  <input type="text" name="survey[name]" value="">
+  <label for="survey[location]">Dojo Location:</label>
+  <select class="" name="survey[location]">
+    <option value="Seattle">Seattle</option>
+    <option value="Silicon Valley">Silicon Valley</option>
+    <option value="Austin">Austin</option>
+  </select>
+  <label for="survey[language]">Favorite Language:</label>
+  <select name="survey[language]">
+    <option value="C++">C++</option>
+    <option value="C#">C#</option>
+    <option value="Jai">Jai</option>
+  </select>
+  <label for="survey[comment]">Comment:</label>
+  <textarea name="survey[comment]" rows="8" cols="80"></textarea>
+  <input type="submit" value="Submit">
+</form>
