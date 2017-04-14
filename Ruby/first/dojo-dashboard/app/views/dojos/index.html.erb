@@ -6,6 +6,9 @@
   </head>
   <body>
     <h1>Listing <%= @dojos.length %> Dojos</h1>
+    <% if flash[:message] %>
+      <p><%= flash[:message] %></p>
+    <% end %>
     <a href="/dojos/new">New Dojo</a>
     <table>
       <thead>

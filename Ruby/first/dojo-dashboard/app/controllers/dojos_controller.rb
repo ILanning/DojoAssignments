@@ -20,7 +20,7 @@ class DojosController < ApplicationController
     if newDojo.save
       redirect_to "/dojos", flash: { message:"Dojo #{newDojo.branch} successfully created" }
     else
-      redirect_to "/dojos/new", flash { errors: newDojo.errors.full_messages }
+      redirect_to "/dojos/new", flash: { errors: newDojo.errors.full_messages }
     end
   end
 
